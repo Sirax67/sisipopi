@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ 
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-inter",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,10 +27,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="ru"
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-[radial-gradient(50%_98.88%_at_0%_0%,#250058_0%,#110D21_100%)]">
+        {children}
+        <Toaster position="bottom-right" richColors/>
+      </body>
+      
     </html>
   );
 }
